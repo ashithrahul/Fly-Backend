@@ -9,6 +9,8 @@ router.get(
   (req, res) => searchController.getSuggestions(req, res)
 );
  
+
+
 router.get(
   '/search',
   (req, res) => searchController.searchDetails(req, res)
