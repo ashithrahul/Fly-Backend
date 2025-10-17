@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/ashithrahul/Fly-Backend/issues"
   },
-  "homepage": "https://github.com/ashithrahul/Fly-Backend#readme"
+  "homepage": "https://github.com/ashithrahul/Fly-Backend#readme",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "sequelize": "^6.37.7"
+  }
 }
