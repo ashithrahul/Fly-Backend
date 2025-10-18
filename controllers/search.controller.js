@@ -10,7 +10,6 @@ export default class SearchController {
      async getSuggestions(req, res) {
         try {
             const { q: searchQuery } = req.query;
-                    console.log(searchQuery);
              const suggestions = await this.searchService.getSuggestions(
                 searchQuery, 
                 10
@@ -25,8 +24,8 @@ export default class SearchController {
 
      async searchDetails(req, res) {
         try {
-            const { q: searchQuery } = req.query;
-            const details = await this.searchService.getDetails(searchQuery);
+            const { q: searchQuery, page, limit } = req.query;
+            const details = await this.searchService.getDetails(searchQuery, page, limit);
             successResponse(res, details, 'Search endpoint');
         } catch (error) {
             errorResponse(res);

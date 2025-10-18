@@ -27,9 +27,10 @@ class SearchService {
     }
   }
 
-  async getDetails(searchQuery) {
+  async getDetails(searchQuery, pageNum = 1, limit = 10) {
     try {
-      const results = await Search.findAll({
+      const offset = (pageNum - 1) * limit;
+      const { count, rows } = await Search.findAndCountAll({
         where: {
           [Op.or]: [
             {
@@ -45,10 +46,20 @@ class SearchService {
           ]
         },
         attributes: ['id', 'title', 'description', 'image'],
-        order: [['title', 'ASC']]
+        order: [['title', 'ASC']],
+        limit,
+        offset
       });
+      const totalPages = Math.ceil(count / limit);
 
-      return results;
+      return { totalPages, results: rows, pagination :{
+          page: pageNum,
+          limit: limit,
+          total: count,
+          totalPages: totalPages,
+          hasNext: pageNum < totalPages,
+          hasPrev: pageNum > 1
+      } };
     } catch (error) {
       throw new Error(`Failed to search items: ${error.message}`);
     }
