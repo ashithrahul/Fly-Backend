@@ -1,4 +1,4 @@
-import Item from '../models/search.model.js';
+import Search from '../models/search.model.js';
 import { Op } from 'sequelize';
 class SearchService {
   constructor() {
@@ -10,7 +10,7 @@ class SearchService {
 
   async getSuggestions(searchQuery) {
     try {
-      const suggestions = await Item.findAll({
+      const suggestions = await Search.findAll({
         attributes: ['title'],
         where: {
           title: {
@@ -29,7 +29,7 @@ class SearchService {
 
   async getDetails(searchQuery) {
     try {
-      const results = await Item.findAll({
+      const results = await Search.findAll({
         where: {
           [Op.or]: [
             {

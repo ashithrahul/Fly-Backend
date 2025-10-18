@@ -13,7 +13,7 @@ function startServer() {
   sequelize.authenticate()
     .then(() => {
       console.log('Database connected successfully');
-      return sequelize.sync({ force: true }); 
+      return sequelize.sync({ alter: false }); 
     })
     .then(() => {
       console.log('Database sync happened');
