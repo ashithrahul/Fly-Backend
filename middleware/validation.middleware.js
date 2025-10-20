@@ -1,5 +1,6 @@
 import validator from 'validator';
 
+// middle ware used to validate the input request from api call
 export const validateSearchQuery = (req, res, next) => {
   const { q: searchQuery, page, limit } = req.query;
 

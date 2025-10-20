@@ -1,12 +1,15 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../utils/db.utils.js';
 
+//Search Model [Items used search for naming convension] - defines the database structure for items stored
 const Search = sequelize.define('Search', {
-id: {
+  // Primary key field
+  id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
+  // Item title - required field with validation
   title: {
     type: DataTypes.STRING(255),
     allowNull: false,
@@ -15,10 +18,12 @@ id: {
       len: [1, 255]
     }
   },
+  // Item description - optional text field
   description: {
     type: DataTypes.TEXT,
     allowNull: true
   },
+  // Item image URL - optional with URL validation
   image: {
     type: DataTypes.STRING(500),
     allowNull: true,
@@ -27,7 +32,9 @@ id: {
     }
   }
 }, {
+  // Maps to 'items' table in database
   tableName: 'items',
+  // using title and description for filtering
   indexes: [
     {
       type: 'FULLTEXT',

@@ -1,4 +1,6 @@
+//CORS Middleware
 const corsMiddleware = (req, res, next) => {
+  // Define allowed origins for CORS which bypass only the requested from this endpoint
   const allowedOrigins = [
     'http://54.237.209.95',
     'https://54.237.209.95',
@@ -11,10 +13,12 @@ const corsMiddleware = (req, res, next) => {
 
   const origin = req.headers.origin;
 
+  // Allow origin if it's in the whitelist
   if (allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
   }
 
+  // Handle preflight OPTIONS requests
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
