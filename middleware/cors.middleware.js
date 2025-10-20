@@ -4,6 +4,8 @@ const corsMiddleware = (req, res, next) => {
   const allowedOrigins = [
     'http://54.237.209.95',
     'https://54.237.209.95',
+    'http://13.201.225.228',  
+    'https://13.201.225.228',    
     'http://localhost:3000',
     'http://localhost:3001',
     'http://localhost:5173',
